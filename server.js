@@ -1,17 +1,18 @@
 const express = require('express');
-const html_routes = require('./Develop/routes/html-routes');
-const api_routes = require('./Develop/routes/api-routes');
-const PORT = process.env.PORT || 3001; 
-const app = express(); 
+const html_routes = require('./routes/html-routes')
+const api_routes = require('./routes/api-routes')
+const PORT = process.env.PORT || 3001;
 
-app.use(express.urlencoded({ extended: false}));
+const app = express();
+
+// middleware
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
-app.use(html_routes);
-app.use(api_routes);
+app.use(html_routes)
+app.use(api_routes)
 
-
+//this will ensure that the application will run on local port
 app.listen(PORT, () => {
-    console.log(`App listening on http://localhost:${PORT}`)
+    console.log(`Server running on http://localhost:${PORT}`);
 });
-
